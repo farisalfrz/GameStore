@@ -274,8 +274,8 @@ public class UserFrame extends javax.swing.JFrame {
             Connection conn = DriverManager.getConnection(database, user, pass);
             Statement stt = conn.createStatement();
             String SQL = "SELECT transactions.gameID, game_title, studio_name, publisher_name, release_date, genre FROM transactions LEFT JOIN games ON transactions.gameID = games.gameID LEFT JOIN studios ON games.studioID=studios.studioID LEFT JOIN publishers ON games.publisherID=publishers.publisherID WHERE userID=" 
-                    + this.userID + " AND game_title LIKE '%"+ textSearchMyGames.getText() +"%' OR genre LIKE '%" + textSearchMyGames.getText() + "%' OR studio_name LIKE '%" + textSearchMyGames.getText() + "%' OR publisher_name LIKE '%" + textSearchMyGames.getText() + "%' OR release_date LIKE '%" + textSearchMyGames.getText() 
-                    + "%' OR price LIKE '%" + textSearchMyGames.getText() + "%'";
+                    + this.userID + " AND (game_title LIKE '%"+ textSearchMyGames.getText() +"%' OR genre LIKE '%" + textSearchMyGames.getText() + "%' OR studio_name LIKE '%" + textSearchMyGames.getText() + "%' OR publisher_name LIKE '%" + textSearchMyGames.getText() + "%' OR release_date LIKE '%" + textSearchMyGames.getText() 
+                    + "%' OR price LIKE '%" + textSearchMyGames.getText() + "%')";
             ResultSet res = stt.executeQuery(SQL);
             while (res.next()) {
                 JPanel rowPanel = new JPanel();
